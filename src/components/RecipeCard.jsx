@@ -1,7 +1,8 @@
+// src/components/RecipeCard.jsx (Modificado)
 import { Card, CardContent, CardMedia, Typography, Button, CardActions } from '@mui/material'
-import { Link } from 'react-router-dom'
 
-export default function RecipeCard({ recipe }) {
+// La prop onOpenModal es una nueva función que recibiremos de Recipes.jsx
+export default function RecipeCard({ recipe, onOpenModal }) {
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 3 }}>
             <CardMedia
@@ -19,7 +20,13 @@ export default function RecipeCard({ recipe }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" component={Link} to={`/recetas/${recipe.id}`}>
+                {/* ¡IMPORTANTE! Cambiamos el Link por una llamada a la función
+                  que abre el modal y le pasamos la receta.
+                */}
+                <Button 
+                    size="small" 
+                    onClick={() => onOpenModal(recipe)} // Llama a la función
+                >
                     Ver Receta
                 </Button>
             </CardActions>
